@@ -20,16 +20,12 @@ void getRepos(String repoUrl) {
     out.println(repoName)
   }
   URLConnection conn = userApi.openConnection();
-  Pattern r = Pattern.compile("(http[^ >;]*); rel=\"next\"")
+  Pattern r = Pattern.compile("(http[^>]*)>; rel=\"next\"")
   Matcher m = r.matcher(conn.getHeaderField("Link"))
 
-  out.Println(m.length)
-/*  String next = m[0]
-
-  if (next != ) {
-    out.println("Following next url, " + next)
-		getRepos(next)
+  if (m.find()) {
+    out.println("Following next url, " + m.group(1))
+    getRepos(m.group(1))
   }
-*/
 }
 getRepos("https://api.github.com/users/brimstone/repos")
