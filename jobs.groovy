@@ -15,6 +15,7 @@ void getRepos(String repoUrl) {
             git{
 				remote(clone_url)
 				remotePoll()
+			}
         }
     }
   }
