@@ -8,12 +8,11 @@ void getRepos(String repoUrl) {
   repos.each {
     def repoName = it.name
 	out.println(repoName)
-    out.println(it)
-    out.println(it.clone_url)
+    clone_url = it.clone_url
     //def jobName = "${project}-${branchName}".replaceAll('/','-')
     workflowJob(repoName) {
         scm {
-            git(it.clone_url)
+            git(clone_url)
         }
     }
   }
