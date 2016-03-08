@@ -12,7 +12,9 @@ void getRepos(String repoUrl) {
     //def jobName = "${project}-${branchName}".replaceAll('/','-')
     workflowJob(repoName) {
         scm {
-            git(clone_url)
+            git{
+				remote(clone_url)
+				remotePoll()
         }
     }
   }
