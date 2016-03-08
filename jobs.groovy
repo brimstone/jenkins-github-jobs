@@ -7,13 +7,15 @@ void getRepos(String repoUrl) {
   def repos = new groovy.json.JsonSlurper().parse(userApi.newReader())
   repos.each {
     def repoName = it.name
+	out.println(repoName)
+    out.println(it)
+    out.println(it.clone_url)
     //def jobName = "${project}-${branchName}".replaceAll('/','-')
     workflowJob(repoName) {
         scm {
             git(it.clone_url)
         }
     }
-    out.println(repoName)
   }
   URLConnection conn = userApi.openConnection();
   Pattern r = Pattern.compile("(http[^>]*)>; rel=\"next\"")
