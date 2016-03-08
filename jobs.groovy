@@ -14,6 +14,11 @@ void getRepos(String repoUrl) {
         scm {
             git(clone_url)
         }
+		definition {
+			cps {
+				script(readFileFromWorkspace('Jenkinsfile'))
+			}
+		}
 	    triggers {
 		    scm('H/15 * * * *')
 		}
