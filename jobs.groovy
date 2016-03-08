@@ -12,14 +12,11 @@ void getRepos(String repoUrl) {
     //def jobName = "${project}-${branchName}".replaceAll('/','-')
     workflowJob(repoName) {
         scm {
-            git{
-				remote{
-					name('origin')
-					url(clone_url)
-				}
-				remotePoll()
-			}
+            git(clone_url)
         }
+	    triggers {
+		    scm('@daily')
+		}
     }
   }
   URLConnection conn = userApi.openConnection();
