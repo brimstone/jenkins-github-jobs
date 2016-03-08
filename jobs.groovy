@@ -8,15 +8,11 @@ void getRepos(String repoUrl) {
   repos.each {
     def repoName = it.name
     //def jobName = "${project}-${branchName}".replaceAll('/','-')
-    /*job(jobName) {
+    workflowJob(repoName) {
         scm {
-            git("git://github.com/${project}.git", branchName)
-        }
-        steps {
-            maven("test -Dproject.name=${project}/${branchName}")
+            git(it.clone_url)
         }
     }
-*/
     out.println(repoName)
   }
   URLConnection conn = userApi.openConnection();
@@ -25,7 +21,7 @@ void getRepos(String repoUrl) {
 
   if (m.find()) {
     out.println("Following next url, " + m.group(1))
-    getRepos(m.group(1))
+    //getRepos(m.group(1))
   }
 }
 getRepos("https://api.github.com/users/brimstone/repos")
