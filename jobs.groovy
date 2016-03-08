@@ -25,7 +25,7 @@ void getRepos(String repoUrl) {
 
   if (m.find()) {
     out.println("Following next url, " + m.group(1))
-    //getRepos(m.group(1))
+    getRepos(m.group(1))
   }
 }
 getRepos("https://api.github.com/users/brimstone/repos")
