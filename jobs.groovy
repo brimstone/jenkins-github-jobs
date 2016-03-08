@@ -15,7 +15,7 @@ void getRepos(String repoUrl) {
             git(clone_url)
         }
 	    triggers {
-		    scm('@daily')
+		    scm('H/15 * * * *')
 		}
     }
   }
