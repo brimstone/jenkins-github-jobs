@@ -13,7 +13,10 @@ void getRepos(String repoUrl) {
     workflowJob(repoName) {
         scm {
             git{
-				remote(clone_url)
+				remote{
+					name('origin')
+					url(clone_url)
+				}
 				remotePoll()
 			}
         }
